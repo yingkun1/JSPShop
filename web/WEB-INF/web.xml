@@ -5,4 +5,20 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
            version="2.5">
 
+    <servlet>
+        <servlet-name>doUserAddServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUserSelectServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserSelectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>doUserAddServlet</servlet-name>
+        <url-pattern>/admin_douseradd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserSelectServlet</servlet-name>
+        <url-pattern>/admin_douserselect</url-pattern>
+    </servlet-mapping>
 </web-app>
