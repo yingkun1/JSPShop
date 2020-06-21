@@ -13,6 +13,14 @@
         <servlet-name>doUserSelectServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserSelectServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>toUserUpdateServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.toUserUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUserUpdateServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
         <url-pattern>/admin_douseradd</url-pattern>
@@ -20,5 +28,13 @@
     <servlet-mapping>
         <servlet-name>doUserSelectServlet</servlet-name>
         <url-pattern>/admin_douserselect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>toUserUpdateServlet</servlet-name>
+        <url-pattern>/admin_touserupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserUpdateServlet</servlet-name>
+        <url-pattern>/admin_douserupdate</url-pattern>
     </servlet-mapping>
 </web-app>

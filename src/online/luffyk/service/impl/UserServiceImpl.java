@@ -47,4 +47,29 @@ public class UserServiceImpl implements UserService {
         }
         return total;
     }
+
+    @Override
+    public User getUserInfoByIdService(String id) {
+        logger.debug("准备根据id:"+id+"获取指定用户的数据");
+        User user = userDao.getUserInfoByIdDao(id);
+        if(user!=null){
+            logger.debug("获取到了用户的数据");
+        }else{
+            logger.debug("获取用户的数据失败");
+        }
+        return user;
+    }
+
+    @Override
+    public Integer updateOneUserService(User user) {
+        logger.debug("准备更新一个用户");
+        Integer index = userDao.updateOneUserDao(user);
+        if(index>0){
+            logger.debug("更新成功");
+        }else{
+            logger.debug("更新失败");
+        }
+        return index;
+
+    }
 }

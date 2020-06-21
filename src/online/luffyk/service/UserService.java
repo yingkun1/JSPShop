@@ -10,4 +10,8 @@ public interface UserService {
      List<User> showAllUserService(int count,int currentPage,String keywords);
 
      int[] totalNumsAndPagesService(int count,String keywords);
+
+     User getUserInfoByIdService(String id);
+
+     Integer updateOneUserService(User user);
 }

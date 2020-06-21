@@ -80,7 +80,9 @@
                                 <td>${user.USER_ADDRESS}</td>
                                 <td>${user.USER_STATUS}</td>
                                 <td>
-                                    <a class="link-update" href="#">修改</a>
+                                    <a class="link-update" href="admin_touserupdate?id=${user.USER_ID}">修改</a>
+                                    <c:set var="count" value="${requestScope.count}" scope="session"/>
+                                    <c:set var="currentPage" value="${requestScope.currentPage}" scope="session"/>
                                     <a class="link-del" href="#">删除</a>
                                 </td>
                             </tr>
@@ -91,9 +93,9 @@
                         共${requestScope.totalNums}条记录
                         第${requestScope.currentPage}/${requestScope.totalPagesNums}页
                         <a href="admin_douserselect?${requestScope.keywords}">首页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage-1 ==0 ? 1 :requestScope.currentPage-1}${requestScope.keywords}">上一页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage+1 >requestScope.totalPagesNums ? requestScope.totalPagesNums:requestScope.currentPage+1}${requestScope.keywords}">下一页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.totalPagesNums}${requestScope.keywords}">尾页</a>
+                        <a href="admin_douserselect?count=${requestScope.count}&currentPage=${requestScope.currentPage-1 ==0 ? 1 :requestScope.currentPage-1}${requestScope.keywords}">上一页</a>
+                        <a href="admin_douserselect?count=${requestScope.count}&currentPage=${requestScope.currentPage+1 >requestScope.totalPagesNums ? requestScope.totalPagesNums:requestScope.currentPage+1}${requestScope.keywords}">下一页</a>
+                        <a href="admin_douserselect?count=${requestScope.count}&currentPage=${requestScope.totalPagesNums}${requestScope.keywords}">尾页</a>
                     </div>
                 </div>
             </form>

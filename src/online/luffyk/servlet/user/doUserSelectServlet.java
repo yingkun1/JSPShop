@@ -39,6 +39,7 @@ public class doUserSelectServlet extends HttpServlet {
             req.setAttribute("totalNums",totalNums);
             req.setAttribute("totalPagesNums",totalPagesNums);
             req.setAttribute("currentPage",currentPage);
+            req.setAttribute("count",count);
             if(keywords!=null && !keywords.equals("")){
                 req.setAttribute("keywords","&keywords="+keywords);
             }

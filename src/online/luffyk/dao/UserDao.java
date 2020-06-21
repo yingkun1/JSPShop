@@ -11,4 +11,8 @@ public interface UserDao {
     List<User> showAllUserDao(int count,int currentPage,String keywords);
 
     int[] totalNumsAndPagesDao(int count,String keywords);
+
+    User getUserInfoByIdDao(String id);
+
+    Integer updateOneUserDao(User user);
 }
