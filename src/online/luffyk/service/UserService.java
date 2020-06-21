@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
      Integer AddOneUserService(User user);
 
-     List<User> showAllUserService(int count,int currentPage);
+     List<User> showAllUserService(int count,int currentPage,String keywords);
 
-     int[] totalNumsAndPagesService(int count);
+     int[] totalNumsAndPagesService(int count,String keywords);
 }

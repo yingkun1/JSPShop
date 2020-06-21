@@ -17,18 +17,18 @@
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form action="#" method="post">
+                <form action="admin_douserselect" method="get">
                     <table class="search-tab">
                         <tr>
-                            <th width="120">选择分类:</th>
-                            <td>
-                                <select name="search-sort" id="">
-                                    <option value="">全部</option>
-                                    <option value="19">精品界面</option><option value="20">推荐界面</option>
-                                </select>
-                            </td>
+<%--                            <th width="120">选择分类:</th>--%>
+<%--                            <td>--%>
+<%--                                <select name="search-sort" id="">--%>
+<%--                                    <option value="">全部</option>--%>
+<%--                                    <option value="19">精品界面</option><option value="20">推荐界面</option>--%>
+<%--                                </select>--%>
+<%--                            </td>--%>
                             <th width="70">关键字:</th>
-                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
+                            <td><input class="common-text" placeholder="关键字" name="keywords" value="${param.keywords}" id="" type="text"></td>
                             <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
                         </tr>
                     </table>
@@ -90,10 +90,10 @@
                     <div class="list-page">
                         共${requestScope.totalNums}条记录
                         第${requestScope.currentPage}/${requestScope.totalPagesNums}页
-                        <a href="admin_douserselect?count=10&currentPage=1">首页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage-1 ==0 ? 1 :requestScope.currentPage-1}">上一页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage+1 >requestScope.totalPagesNums ? requestScope.totalPagesNums:requestScope.currentPage+1}">下一页</a>
-                        <a href="admin_douserselect?count=10&currentPage=${requestScope.totalPagesNums}">尾页</a>
+                        <a href="admin_douserselect?${requestScope.keywords}">首页</a>
+                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage-1 ==0 ? 1 :requestScope.currentPage-1}${requestScope.keywords}">上一页</a>
+                        <a href="admin_douserselect?count=10&currentPage=${requestScope.currentPage+1 >requestScope.totalPagesNums ? requestScope.totalPagesNums:requestScope.currentPage+1}${requestScope.keywords}">下一页</a>
+                        <a href="admin_douserselect?count=10&currentPage=${requestScope.totalPagesNums}${requestScope.keywords}">尾页</a>
                     </div>
                 </div>
             </form>

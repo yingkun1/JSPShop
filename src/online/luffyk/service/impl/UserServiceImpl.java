@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> showAllUserService(int count,int currentPage) {
+    public List<User> showAllUserService(int count,int currentPage,String keywords) {
         logger.debug("准备获取所有的用户数据");
-        List<User> users = userDao.showAllUserDao(count,currentPage);
+        List<User> users = userDao.showAllUserDao(count,currentPage,keywords);
         if(users!=null&&users.size()>0){
             logger.debug("获取到了全部用户的数据");
         }else{
@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int[] totalNumsAndPagesService(int count) {
+    public int[] totalNumsAndPagesService(int count,String keywords) {
         logger.debug("准备获取总记录数和总页数");
-        int[] total = userDao.totalNumsAndPagesDao(count);
+        int[] total = userDao.totalNumsAndPagesDao(count,keywords);
         if(total[0]>0){
             logger.debug("获取到了总记录数:"+total[0]+",和总页数:"+total[1]);
         }else{

@@ -8,7 +8,7 @@ public interface UserDao {
 
     Integer AddOneUserDao(User user);
 
-    List<User> showAllUserDao(int count,int currentPage);
+    List<User> showAllUserDao(int count,int currentPage,String keywords);
 
-    int[] totalNumsAndPagesDao(int count);
+    int[] totalNumsAndPagesDao(int count,String keywords);
 }

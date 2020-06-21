@@ -56,9 +56,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> showAllUserDao(int count,int currentPage) {
+    public List<User> showAllUserDao(int count,int currentPage,String keywords) {
         logger.debug("传递给我的count为："+count);
         logger.debug("传递给我的currentPage为："+currentPage);
+        logger.debug("传递给我的keywords为："+keywords);
         ArrayList<User> users = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -66,10 +67,20 @@ public class UserDaoImpl implements UserDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
-            String sql = "select * from lmonkey_user order by USER_BIRTHDAY DESC LIMIT ?,?";
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,(currentPage-1)*count);
-            preparedStatement.setInt(2,count);
+            if(keywords==null || keywords.equals("")){
+                String sql = "select * from lmonkey_user order by USER_BIRTHDAY DESC LIMIT ?,?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,(currentPage-1)*count);
+                preparedStatement.setInt(2,count);
+            }else{
+                String sql = "select * from lmonkey_user where USER_NAME like ?  order by USER_BIRTHDAY DESC limit ?,? ;";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1,"%"+keywords+"%");
+                preparedStatement.setInt(2,(currentPage-1)*count);
+                preparedStatement.setInt(3,count);
+                logger.debug( preparedStatement.toString());
+            }
+
             resultSet = preparedStatement.executeQuery();
             users = new ArrayList<>();
             while (resultSet.next()){
@@ -119,7 +130,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int[] totalNumsAndPagesDao(int count) {
+    public int[] totalNumsAndPagesDao(int count,String keywords) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -128,8 +139,17 @@ public class UserDaoImpl implements UserDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
-            String sql = "select count(*) from lmonkey_user";
-            preparedStatement = connection.prepareStatement(sql);
+            if(keywords == null || keywords.equals("")){
+                String sql = "select count(*) from lmonkey_user";
+                preparedStatement = connection.prepareStatement(sql);
+            }else{
+                String sql = "select count(*) from lmonkey_user where USER_NAME like ?";
+                preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1,"%"+keywords+"%");
+
+            }
+
+
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 totalNums = resultSet.getInt(1);
