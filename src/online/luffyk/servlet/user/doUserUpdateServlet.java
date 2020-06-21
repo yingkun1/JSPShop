@@ -28,7 +28,12 @@ public class doUserUpdateServlet extends HttpServlet {
         String email = req.getParameter("email");
         String mobile = req.getParameter("mobile");
         String address = req.getParameter("address");
-        User user = new User(user_id, username, password, sex, birthday, null, email, mobile, address, 1);
+        Integer status = 1;
+        if(req.getParameter("status")!=null){
+            status = Integer.parseInt(req.getParameter("status"));
+        }
+        logger.debug("status:"+status);
+        User user = new User(user_id, username, password, sex, birthday, null, email, mobile, address, status);
         Integer index = userService.updateOneUserService(user);
         if(index > 0){
 //          resp.sendRedirect("/JSPShop/manage/admin_user.jsp");
@@ -38,7 +43,8 @@ public class doUserUpdateServlet extends HttpServlet {
             logger.debug("count:"+count);
             logger.debug("currentPage:"+currentPage);
             resp.sendRedirect("/JSPShop/admin_douserselect?count="+count+"&currentPage="+currentPage);
-
+        }else{
+            resp.sendRedirect("/JSPShop/admin_touserupdate?id="+user_id);
         }
     }
 }

@@ -83,10 +83,20 @@
                                     <a class="link-update" href="admin_touserupdate?id=${user.USER_ID}">修改</a>
                                     <c:set var="count" value="${requestScope.count}" scope="session"/>
                                     <c:set var="currentPage" value="${requestScope.currentPage}" scope="session"/>
-                                    <a class="link-del" href="#">删除</a>
+                                    <c:if test="${user.USER_STATUS == 1}">
+                                        <a class="link-del" href="javascript:Delete('你确定要删除这个用户${user.USER_NAME}吗?','admin_douserdelete?id=${user.USER_ID}')">删除</a>
+                                    </c:if>
+
                                 </td>
                             </tr>
                         </c:forEach>
+                        <script>
+                            function Delete(message,url) {
+                                if(confirm(message)){
+                                    location.href = url;
+                                }
+                            }
+                        </script>
 
                     </table>
                     <div class="list-page">

@@ -14,4 +14,6 @@ public interface UserService {
      User getUserInfoByIdService(String id);
 
      Integer updateOneUserService(User user);
+
+     Integer deleteOneUserService(String id);
 }

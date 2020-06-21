@@ -13,17 +13,18 @@
 <div class="main-wrap">
 
     <div class="crumb-wrap">
-        <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">作品管理</a><span class="crumb-step">&gt;</span><span>新增作品</span></div>
+        <div class="crumb-list"><i class="icon-font"></i><a href="manage/admin_index.jsp">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="admin_douserselect">用户管理</a><span class="crumb-step">&gt;</span><span>修改用户</span></div>
     </div>
     <div class="result-wrap">
         <div class="result-content">
             <form action="admin_douserupdate" method="post" id="myform" >
+                <input type="hidden" name="status" value="${requestScope.user.USER_STATUS}">
                 <table class="insert-tab" width="100%">
                     <tbody>
                     <tr>
                         <th><i class="require-red">*</i>用户id：</th>
                         <td>
-                            <input class="common-text required" id="title" name="user_id" size="50" value="${requestScope.user.USER_ID}" type="text">
+                            <input class="common-text required" id="title" name="user_id" size="50" value="${requestScope.user.USER_ID}" type="text" readonly="readonly">
                         </td>
                     </tr>
                     <tr>

@@ -72,4 +72,16 @@ public class UserServiceImpl implements UserService {
         return index;
 
     }
+
+    @Override
+    public Integer deleteOneUserService(String id) {
+        logger.debug("准备删除id为："+id+"的用户");
+        Integer index = userDao.deleteOneUserDao(id);
+        if(index>0){
+            logger.debug("已经删除了该用户");
+        }else{
+            logger.debug("删除用户失败");
+        }
+        return index;
+    }
 }

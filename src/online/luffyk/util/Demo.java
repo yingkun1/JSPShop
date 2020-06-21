@@ -20,9 +20,14 @@ public class Demo {
 //        int b = 2;
 //        double ceil = Math.ceil((double) a / b);i
 //        System.out.println(ceil);
-        int a = 42;
-        int b = 5;
-        int i = (int)((double)a / b);
-        System.out.println(i);
+//        int a = 42;
+//        int b = 5;
+//        int i = (int)((double)a / b);
+//        System.out.println(i);
+        int sum = 0;
+        for(int i = 0;i<=100;i++){
+            sum+=i;
+        }
+        System.out.println(sum);
     }
 }

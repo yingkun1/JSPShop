@@ -21,6 +21,10 @@
         <servlet-name>doUserUpdateServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doUserDeleteServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserDeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
         <url-pattern>/admin_douseradd</url-pattern>
@@ -36,5 +40,9 @@
     <servlet-mapping>
         <servlet-name>doUserUpdateServlet</servlet-name>
         <url-pattern>/admin_douserupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserDeleteServlet</servlet-name>
+        <url-pattern>/admin_douserdelete</url-pattern>
     </servlet-mapping>
 </web-app>

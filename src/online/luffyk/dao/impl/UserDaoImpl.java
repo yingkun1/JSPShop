@@ -196,7 +196,7 @@ public class UserDaoImpl implements UserDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
-            String sql = "select * from lmonkey_user where USER_ID = ?";
+            String sql = "SELECT m.*, DATE_FORMAT(m.USER_BIRTHDAY,'%Y-%m-%d')BIRTHDAY from lmonkey_user m WHERE USER_ID=?";
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,id);
             resultSet = preparedStatement.executeQuery();
@@ -206,7 +206,7 @@ public class UserDaoImpl implements UserDao {
                 user.setUSER_NAME(resultSet.getString("USER_NAME"));
                 user.setUSER_PASSWORD(resultSet.getString("USER_PASSWORD"));
                 user.setUSER_SEX(resultSet.getString("USER_SEX"));
-                user.setUSER_BIRTHDAY(resultSet.getString("USER_BIRTHDAY"));
+                user.setUSER_BIRTHDAY(resultSet.getString("BIRTHDAY"));
                 user.setUSER_IDENTITY_CODE(resultSet.getString("USER_IDENTITY_CODE"));
                 user.setUSER_EMAIL(resultSet.getString("USER_EMAIL"));
                 user.setUSER_MOBILE(resultSet.getString("USER_MOBILE"));
@@ -249,19 +249,18 @@ public class UserDaoImpl implements UserDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
-            String sql = "update lmonkey_user SET USER_ID=?,USER_NAME=?,USER_PASSWORD=?,USER_SEX=?,USER_BIRTHDAY=?,USER_IDENTITY_CODE=?,USER_EMAIL=?,USER_MOBILE=?,USER_ADDRESS=?,USER_STATUS=? where USER_ID=?";
+            String sql = "update lmonkey_user SET USER_NAME=?,USER_PASSWORD=?,USER_SEX=?,USER_BIRTHDAY=?,USER_IDENTITY_CODE=?,USER_EMAIL=?,USER_MOBILE=?,USER_ADDRESS=?,USER_STATUS=? where USER_ID=?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,user.getUSER_ID());
-            preparedStatement.setString(2,user.getUSER_NAME());
-            preparedStatement.setString(3,user.getUSER_PASSWORD());
-            preparedStatement.setString(4,user.getUSER_SEX());
-            preparedStatement.setString(5,user.getUSER_BIRTHDAY());
-            preparedStatement.setObject(6,user.getUSER_IDENTITY_CODE(),Types.VARCHAR);
-            preparedStatement.setString(7,user.getUSER_EMAIL());
-            preparedStatement.setString(8,user.getUSER_MOBILE());
-            preparedStatement.setString(9,user.getUSER_ADDRESS());
-            preparedStatement.setInt(10,user.getUSER_STATUS());
-            preparedStatement.setString(11,user.getUSER_ID());
+            preparedStatement.setString(1,user.getUSER_NAME());
+            preparedStatement.setString(2,user.getUSER_PASSWORD());
+            preparedStatement.setString(3,user.getUSER_SEX());
+            preparedStatement.setString(4,user.getUSER_BIRTHDAY());
+            preparedStatement.setObject(5,user.getUSER_IDENTITY_CODE(),Types.VARCHAR);
+            preparedStatement.setString(6,user.getUSER_EMAIL());
+            preparedStatement.setString(7,user.getUSER_MOBILE());
+            preparedStatement.setString(8,user.getUSER_ADDRESS());
+            preparedStatement.setInt(9,user.getUSER_STATUS());
+            preparedStatement.setString(10,user.getUSER_ID());
             index = preparedStatement.executeUpdate();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -271,5 +270,24 @@ public class UserDaoImpl implements UserDao {
             return index;
         }
 
+    }
+
+    @Override
+    public Integer deleteOneUserDao(String id) {
+        int index = -1;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
+            String sql = "delete from lmonkey_user where USER_ID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,id);
+            index = preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return index;
+        }
     }
 }

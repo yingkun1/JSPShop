@@ -15,4 +15,6 @@ public interface UserDao {
     User getUserInfoByIdDao(String id);
 
     Integer updateOneUserDao(User user);
+
+    Integer deleteOneUserDao(String id);
 }
