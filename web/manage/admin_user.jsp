@@ -36,18 +36,18 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
+            <form name="" action="admin_douserdelete" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
                         <a href="manage/admin_userAdd.jsp"><i class="icon-font"></i>新增用户</a>
-                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                        <a id="batchDel" href="javascript:DeleteMore('你确定要批量删除用户吗?','myform')"><i class="icon-font"></i>批量删除</a>
+<%--                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>--%>
                     </div>
                 </div>
                 <div class="result-content">
                     <table class="result-tab" width="100%">
                         <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                            <th class="tc" width="5%"><input class="allChoose" onclick="selectAll(this)" name="" type="checkbox"></th>
                             <th>ID</th>
                             <th>姓名</th>
                             <th>密码</th>
@@ -94,6 +94,20 @@
                             function Delete(message,url) {
                                 if(confirm(message)){
                                     location.href = url;
+                                }
+                            }
+                            function selectAll(object) {
+                                let elementsByName = document.getElementsByName("id[]");
+                                for(let i=0;i<elementsByName.length;i++){
+                                    elementsByName[i].checked = object.checked;
+                                }
+                            }
+                            function DeleteMore(message,id) {
+                                if(confirm(message)){
+                                    console.log(id);
+                                    let elementById = document.getElementById(id);
+                                    console.log(elementById);
+                                    elementById.submit();
                                 }
                             }
                         </script>

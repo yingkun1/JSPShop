@@ -278,7 +278,7 @@ public class UserDaoImpl implements UserDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
-            String sql = "delete from lmonkey_user where USER_ID=?";
+            String sql = "delete from lmonkey_user where USER_ID=? AND  USER_STATUS!=2";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,id);
             index = preparedStatement.executeUpdate();

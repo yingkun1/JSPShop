@@ -84,4 +84,22 @@ public class UserServiceImpl implements UserService {
         }
         return index;
     }
+
+    @Override
+    public Integer deleteMoreUserService(String[] ids) {
+        logger.debug("准备批量删除用户.");
+        Integer sum= 0;
+        for(String value:ids){
+            int index = 0;
+            logger.debug("准备删除id为："+value+"的用户");
+            index = userDao.deleteOneUserDao(value);
+            if(index>0){
+                sum++;
+                logger.debug("id为："+value+"的用户删除成功");
+            }else{
+                logger.debug("id为："+value+"的用户删除失败");
+            }
+        }
+        return sum;
+    }
 }
