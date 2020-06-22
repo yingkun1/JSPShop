@@ -14,8 +14,8 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 public class CodeUtil {
-    private static int width = 90;// 定义图片的width
-    private static int height = 20;// 定义图片的height
+    private static int width = 120;// 定义图片的width
+    private static int height = 30;// 定义图片的height
     private static int codeCount = 4;// 定义图片上显示验证码的个数
     private static int xx = 15;
     private static int fontHeight = 18;
