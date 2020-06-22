@@ -26,9 +26,9 @@ html, body {
     top: 15%;
     right: 140px;
     padding: 20px 0;
-    text-align: center;
     z-index: 10;
     background: #fff;
+    padding-left: 50px;
 }
 
 .msg-warn {
@@ -50,8 +50,8 @@ html, body {
 }
 
 .reg form {
-    width: 480px;
-    height: 490px;
+    width: 680px;
+    /*height: 490px;*/
     background: #fff;
 }
 
@@ -114,7 +114,7 @@ div.reg form p.txtL a {
     text-align: right;
 }
 
-.reg p.txt a, .login p.txt a, {
+.reg p.txt a, .login p.txt a {
     color: #666;
     text-decoration: underline;
 }

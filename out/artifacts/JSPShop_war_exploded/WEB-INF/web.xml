@@ -25,6 +25,14 @@
         <servlet-name>doUserDeleteServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserDeleteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doUserCaptchaServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserCaptchaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doConfirmCaptchaServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doConfirmCaptchaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
         <url-pattern>/admin_douseradd</url-pattern>
@@ -44,5 +52,13 @@
     <servlet-mapping>
         <servlet-name>doUserDeleteServlet</servlet-name>
         <url-pattern>/admin_douserdelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserCaptchaServlet</servlet-name>
+        <url-pattern>/captcha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doConfirmCaptchaServlet</servlet-name>
+        <url-pattern>/confirm_captcha</url-pattern>
     </servlet-mapping>
 </web-app>
