@@ -33,6 +33,7 @@
         <servlet-name>doConfirmCaptchaServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doConfirmCaptchaServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
         <url-pattern>/admin_douseradd</url-pattern>
@@ -61,4 +62,5 @@
         <servlet-name>doConfirmCaptchaServlet</servlet-name>
         <url-pattern>/confirm_captcha</url-pattern>
     </servlet-mapping>
+
 </web-app>

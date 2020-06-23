@@ -40,19 +40,70 @@
         function cancelPrompt(obj) {
             console.log("焦点聚焦，取消后面的提示");
             if($(obj).attr("name")=="code"){
-                $(obj).next("img").next("span").html("");
+                $(obj).next("img").next("span").html("").removeClass("error");
             }else{
-                $(obj).next("span").html("");
+                $(obj).next("span").html("").removeClass("error");
             }
 
         }
         function showPrompt(obj) {
             console.log("焦点离开，准备验证数据");
-            if($(obj).attr("name")=="code"){
-                $(obj).next("img").next("span").html("不能为空");
-            }else{
-                $(obj).next("span").html("不能为空");
+            let attr = $(obj).attr("name");
+            console.log(attr);
+            switch (attr) {
+                case "id":
+                    if($(obj).val() == ""){
+                        $(obj).next("span").html("用户id不能为空").addClass("error");
+                    }else{
+                        let url = 'dousernamecheck?id='+encodeURI($(obj).val())+"&"+new Date().valueOf();
+                        $.get(url,function (data) {
+                            console.log(data);
+                        });
+                        console.log(url);
+                    }
+                    break;
+                case "username":
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("用户名不能为空").addClass("error");
+                    }
+                    break;
+                case "password":
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("密码不能为空").addClass("error");
+                    }
+                    break;
+                case "confirm_password":
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("确认密码不能为空").addClass("error");
+                    }else if($(obj).val() != $("#password").val()){
+                        $(obj).next("span").html("两次输入的密码不一致").addClass("error");
+                    }
+                    break;
+                case "birthday":
+                    console.log("生日");
+                    break;
+                case "email":
+                    console.log("邮箱");
+                    break;
+                case "mobile":
+                    console.log("手机号码");
+                    break;
+                case "address":
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("收货地址不能为空").addClass("error");
+                    }
+                    break;
+                case "code":
+                    if($(obj).val()==""){
+                        $(obj).next("img").next("span").html("验证码不能为空").addClass("error");
+                    }
+                    break;
             }
+            // if($(obj).attr("name")=="code"){
+            //     $(obj).next("img").next("span").html("不能为空");
+            // }else{
+            //     $(obj).next("span").html("不能为空");
+            // }
         }
 
     </script>
@@ -69,20 +120,20 @@
 <div class="reg">
     <form action="#" method="post"><h1><a href="index.html"><img src="img/temp/logo.png"></a></h1>
         <p>用户注册</p>
-        <p><input type="text" name="id" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户ID"><span class="error" ></span></p>
-        <p><input type="text" name="username" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户名"><span class="error"></span></p>
-        <p><input type="text" name="password" value="" placeholder="请输入密码"><span></span></p>
-        <p><input type="text" name="confirm_password" value="" placeholder="请确认密码"><span></span></p>
+        <p><input type="text" name="id" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户ID"><span></span></p>
+        <p><input type="text" name="username" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户名"><span></span></p>
+        <p><input type="text" name="password" value="" id="password" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入密码"><span></span></p>
+        <p><input type="text" name="confirm_password" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" value="" placeholder="请确认密码"><span></span></p>
         <p>
             男 <input style="width: 15px;height: 25px;margin-right: 50px"  type="radio" name="sex" value="T" checked="checked">
             女 <input style="width: 15px;height: 25px" type="radio" name="sex" value="F" ><span></span>
         </p>
-        <p><input type="text" name="birthday" value="" onfocus="c.show(this)" placeholder="请输入生日"><span></span></p>
-        <p><input type="text" name="email" value="" placeholder="请输入邮箱"><span></span></p>
-        <p><input type="text" name="mobile" value="" placeholder="请输入手机号码"><span></span></p>
-        <p><input type="text" name="address" value="" placeholder="请输入地址"><span></span></p>
-        <p><input type="text" name="code" style="width: 80px;" placeholder="验证码" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" /> <img id="imgObj" alt="验证码"
-                                                                              src="captcha" onclick="changeImg()"><span class="error"></span></p>
+        <p><input type="text" name="birthday" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入生日"><span></span></p>
+        <p><input type="text" name="email" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入邮箱"><span></span></p>
+        <p><input type="text" name="mobile" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入手机号码"><span></span></p>
+        <p><input type="text" name="address" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入地址"><span></span></p>
+        <p><input type="text" name="code" style="width: 80px;" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="验证码" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" /> <img id="imgObj" alt="验证码"
+                                                                              src="captcha" onclick="changeImg()"><span></span></p>
         <p><input type="submit" name="" value="注册"></p>
         <p>完成此注册，即表明您同意了我们的<a href="#">
             <使用条款和隐私策略>
