@@ -41,7 +41,7 @@ public class doUserRegisterServlet extends HttpServlet {
         Integer index = userService.registerUserService(user);
         if(index>0){
             logger.debug("注册成功");
-            resp.sendRedirect("/JSPShop/reg.jsp");
+            resp.sendRedirect("/JSPShop/login.jsp");
         }else{
             logger.debug("注册失败");
             resp.sendRedirect("/JSPShop/reg.jsp");

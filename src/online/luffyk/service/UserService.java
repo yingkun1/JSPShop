@@ -22,4 +22,6 @@ public interface UserService {
      Boolean checkUserIdExist(String id);
 
      Integer registerUserService(User user);
+
+     User loginUserService(String id,String password);
 }

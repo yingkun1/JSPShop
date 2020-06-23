@@ -49,6 +49,10 @@
         <servlet-name>doUserRegisterServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserRegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doUserLoginServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserLoginServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
@@ -85,6 +89,10 @@
     <servlet-mapping>
         <servlet-name>doUserRegisterServlet</servlet-name>
         <url-pattern>/douserregister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserLoginServlet</servlet-name>
+        <url-pattern>/douserlogin</url-pattern>
     </servlet-mapping>
 
 </web-app>
