@@ -4,6 +4,14 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
            version="2.5">
+    <filter>
+        <filter-name>RegisterFilter</filter-name>
+        <filter-class>online.luffyk.filter.RegisterFilter</filter-class>
+    </filter>
+   <filter-mapping>
+       <filter-name>RegisterFilter</filter-name>
+       <url-pattern>/douserregister</url-pattern>
+   </filter-mapping>
 
     <servlet>
         <servlet-name>doUserAddServlet</servlet-name>
@@ -30,8 +38,16 @@
         <servlet-class>online.luffyk.servlet.user.doUserCaptchaServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>doConfirmCaptchaServlet</servlet-name>
-        <servlet-class>online.luffyk.servlet.user.doConfirmCaptchaServlet</servlet-class>
+        <servlet-name>doUserIdCheckServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserIdCheckServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUserCaptchaCheckServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserCaptchaCheckServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUserRegisterServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserRegisterServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -59,8 +75,16 @@
         <url-pattern>/captcha</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>doConfirmCaptchaServlet</servlet-name>
-        <url-pattern>/confirm_captcha</url-pattern>
+        <servlet-name>doUserIdCheckServlet</servlet-name>
+        <url-pattern>/dousernamecheck</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserCaptchaCheckServlet</servlet-name>
+        <url-pattern>/dousercaptchacheck</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserRegisterServlet</servlet-name>
+        <url-pattern>/douserregister</url-pattern>
     </servlet-mapping>
 
 </web-app>

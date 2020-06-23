@@ -18,4 +18,8 @@ public interface UserService {
      Integer deleteOneUserService(String id);
 
      Integer deleteMoreUserService(String[] ids);
+
+     Boolean checkUserIdExist(String id);
+
+     Integer registerUserService(User user);
 }

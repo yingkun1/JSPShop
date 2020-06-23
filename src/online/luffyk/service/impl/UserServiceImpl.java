@@ -102,4 +102,33 @@ public class UserServiceImpl implements UserService {
         }
         return sum;
     }
+
+    @Override
+    public Boolean checkUserIdExist(String id) {
+        logger.debug("准备检查该id:"+id+"是否已经被注册过了");
+        User user = userDao.getUserInfoByIdDao(id);
+        Boolean flag = false;
+        if(user!=null){
+            logger.debug("该id:"+id+"已经被注册过了");
+            flag = true;
+        }else{
+            logger.debug("该id:"+id+"还没有被注册");
+
+        }
+        return flag;
+
+    }
+
+    @Override
+    public Integer registerUserService(User user) {
+        logger.debug("准备注册新用户");
+        Integer index = userDao.AddOneUserDao(user);
+        if(index>0){
+            logger.debug("用户注册成功，用户名为："+user.getUSER_NAME());
+        }else{
+            logger.debug("用户注册失败");
+        }
+        return index;
+    }
+
 }

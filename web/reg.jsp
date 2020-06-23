@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="css/login.css"/>
     <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     <script>
+        var flag = true;
         function changeImg() {
             console.log("点击了图片");
             let img = $("#imgObj");
@@ -46,6 +47,7 @@
             }
 
         }
+
         function showPrompt(obj) {
             console.log("焦点离开，准备验证数据");
             let attr = $(obj).attr("name");
@@ -54,56 +56,108 @@
                 case "id":
                     if($(obj).val() == ""){
                         $(obj).next("span").html("用户id不能为空").addClass("error");
+                        flag = false;
                     }else{
                         let url = 'dousernamecheck?id='+encodeURI($(obj).val())+"&"+new Date().valueOf();
                         $.get(url,function (data) {
                             console.log(data);
+                            if(data == "true"){
+                                $(obj).next("span").html("用户id已经被注册过了").addClass("error");
+                                flag = false;
+                            }else{
+                                flag = true;
+                            }
+
                         });
-                        console.log(url);
                     }
                     break;
                 case "username":
                     if($(obj).val()==""){
                         $(obj).next("span").html("用户名不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
                     }
                     break;
                 case "password":
                     if($(obj).val()==""){
                         $(obj).next("span").html("密码不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
                     }
                     break;
                 case "confirm_password":
                     if($(obj).val()==""){
                         $(obj).next("span").html("确认密码不能为空").addClass("error");
+                        flag = false;
                     }else if($(obj).val() != $("#password").val()){
                         $(obj).next("span").html("两次输入的密码不一致").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
                     }
                     break;
                 case "birthday":
-                    console.log("生日");
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("生日不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
+                    }
                     break;
                 case "email":
-                    console.log("邮箱");
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("邮箱不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
+                    }
                     break;
                 case "mobile":
-                    console.log("手机号码");
+                    if($(obj).val()==""){
+                        $(obj).next("span").html("手机号码不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
+                    }
                     break;
                 case "address":
                     if($(obj).val()==""){
                         $(obj).next("span").html("收货地址不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        flag = true;
                     }
                     break;
                 case "code":
                     if($(obj).val()==""){
                         $(obj).next("img").next("span").html("验证码不能为空").addClass("error");
+                        flag = false;
+                    }else{
+                        let url = "dousercaptchacheck?captcha="+encodeURI($(obj).val())+"&"+new Date().valueOf();
+                        $.get(url,function (data) {
+                            if(data == "false"){
+                                $(obj).next("img").next("span").html("验证码输入错误,请重新输入").addClass("error");
+                                flag = false;
+                            }else{
+                                flag = true;
+                            }
+                        })
                     }
                     break;
             }
-            // if($(obj).attr("name")=="code"){
-            //     $(obj).next("img").next("span").html("不能为空");
-            // }else{
-            //     $(obj).next("span").html("不能为空");
-            // }
+
+        }
+        function checkForm(obj) {
+
+            let elementsByTagName = obj.getElementsByTagName("input");
+            for(let i =0;i<elementsByTagName.length;i++){
+                if(elementsByTagName[i]!=null && elementsByTagName[i].getAttribute("onblur")){
+                    showPrompt(elementsByTagName[i])
+                }
+            }
+            return flag;
         }
 
     </script>
@@ -118,7 +172,7 @@
 </head>
 <body><!-------------------reg-------------------------->
 <div class="reg">
-    <form action="#" method="post"><h1><a href="index.html"><img src="img/temp/logo.png"></a></h1>
+    <form action="douserregister" method="post" onsubmit="return checkForm(this)" ><h1><a href="index.html"><img src="img/temp/logo.png"></a></h1>
         <p>用户注册</p>
         <p><input type="text" name="id" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户ID"><span></span></p>
         <p><input type="text" name="username" value="" onfocus="cancelPrompt(this)" onblur="showPrompt(this)" placeholder="请输入用户名"><span></span></p>
