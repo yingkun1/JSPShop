@@ -16,14 +16,21 @@
                         <a href="login.jsp" id="login">登录</a><a href="reg.jsp" id="reg">注册</a>
                     </c:when>
                     <c:otherwise>
-                        <a href="#" id="login">用户ID：${sessionScope.user.USER_ID}</a><a href="#" id="reg">用户姓名：${sessionScope.user.USER_NAME}</a>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.adminUser}">
+                                <a href="#" id="login">管理员ID：${sessionScope.adminUser.USER_ID}</a><a href="#" id="reg">管理员姓名：${sessionScope.adminUser.USER_NAME}</a><a href="manage/admin_index.jsp" id="reg">前往后台</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="#" id="login">用户ID：${sessionScope.user.USER_ID}</a><a href="#" id="reg">用户姓名：${sessionScope.user.USER_NAME}</a>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
 
             </p>
                 <form action="#" method="get" class="fl"><input type="text" placeholder="热门搜索：干花花瓶"/><input
                         type="button"/></form>
-                <div class="btn fl clearfix"><a href="mygxin.html"><img src="img/grzx.png"/></a><a href="#" class="er1"><img
+                <div class="btn fl clearfix"><a href="mygxin.jsp"><img src="img/grzx.png"/></a><a href="#" class="er1"><img
                         src="img/ewm.png"/></a><a href="cart.html"><img src="img/gwc.png"/></a>
                     <p><a href="#"><img src="img/smewm.png"/></a></p></div>
             </div>

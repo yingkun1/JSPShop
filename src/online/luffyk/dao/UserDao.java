@@ -19,4 +19,6 @@ public interface UserDao {
     Integer deleteOneUserDao(String id);
 
     User loginUserDao(String id,String password);
+
+    User loginAdminUser(String id,String password);
 }

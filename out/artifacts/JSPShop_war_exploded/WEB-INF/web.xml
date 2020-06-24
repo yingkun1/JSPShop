@@ -4,11 +4,20 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
            version="2.5">
+
     <filter>
         <filter-name>RegisterFilter</filter-name>
         <filter-class>online.luffyk.filter.RegisterFilter</filter-class>
     </filter>
-   <filter-mapping>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>online.luffyk.filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/manage/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
        <filter-name>RegisterFilter</filter-name>
        <url-pattern>/douserregister</url-pattern>
    </filter-mapping>
@@ -34,6 +43,14 @@
         <servlet-class>online.luffyk.servlet.user.doUserDeleteServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>doAdminUseLoginrServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doAdminUseLoginrServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doUserAdminLogoutServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserAdminLogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>doUserCaptchaServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserCaptchaServlet</servlet-class>
     </servlet>
@@ -53,6 +70,12 @@
         <servlet-name>doUserLoginServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.user.doUserLoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>doUserLogoutServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.user.doUserLogoutServlet</servlet-class>
+    </servlet>
+
+
 
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
@@ -75,6 +98,14 @@
         <url-pattern>/admin_douserdelete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>doAdminUseLoginrServlet</servlet-name>
+        <url-pattern>/admin_douserlogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserAdminLogoutServlet</servlet-name>
+        <url-pattern>/admin_douserlogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>doUserCaptchaServlet</servlet-name>
         <url-pattern>/captcha</url-pattern>
     </servlet-mapping>
@@ -94,5 +125,10 @@
         <servlet-name>doUserLoginServlet</servlet-name>
         <url-pattern>/douserlogin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doUserLogoutServlet</servlet-name>
+        <url-pattern>/douserlogout</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

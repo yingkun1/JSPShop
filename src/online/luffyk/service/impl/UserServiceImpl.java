@@ -143,4 +143,16 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public User loginAdminUserService(String id, String password) {
+        logger.debug("管理员用户："+id+"准备登录");
+        User user = userDao.loginAdminUser(id, password);
+        if(user!=null){
+            logger.debug("管理员用户："+id+"登录成功");
+        }else{
+            logger.debug("登录失败");
+        }
+        return user;
+    }
+
 }

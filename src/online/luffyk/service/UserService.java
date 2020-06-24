@@ -24,4 +24,6 @@ public interface UserService {
      Integer registerUserService(User user);
 
      User loginUserService(String id,String password);
+
+     User loginAdminUserService(String id,String password);
 }

@@ -323,4 +323,36 @@ public class UserDaoImpl implements UserDao {
             return user;
         }
     }
+
+    @Override
+    public User loginAdminUser(String id, String password) {
+        User user = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215:3306/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
+            String sql = "select * from lmonkey_user where USER_ID=? and USER_PASSWORD=? AND USER_STATUS=2";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,id);
+            preparedStatement.setString(2,password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                user = new User();
+                user.setUSER_ID(resultSet.getString("USER_ID"));
+                user.setUSER_NAME(resultSet.getString("USER_NAME"));
+                user.setUSER_PASSWORD(resultSet.getString("USER_PASSWORD"));
+                user.setUSER_SEX(resultSet.getString("USER_BIRTHDAY"));
+                user.setUSER_IDENTITY_CODE(resultSet.getString("USER_IDENTITY_CODE"));
+                user.setUSER_EMAIL(resultSet.getString("USER_EMAIL"));
+                user.setUSER_MOBILE(resultSet.getString("USER_MOBILE"));
+                user.setUSER_ADDRESS(resultSet.getString("USER_ADDRESS"));
+                user.setUSER_STATUS(resultSet.getInt("USER_STATUS"));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return user;
+        }
+    }
 }

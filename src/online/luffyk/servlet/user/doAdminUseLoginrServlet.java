@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class doUserLoginServlet extends HttpServlet {
-    private Logger logger = Logger.getLogger(doUserLoginServlet.class);
+public class doAdminUseLoginrServlet extends HttpServlet {
+    private Logger logger = Logger.getLogger(doAdminUseLoginrServlet.class);
     private UserService userService = new UserServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,19 +21,19 @@ public class doUserLoginServlet extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         String id = req.getParameter("id");
         String password = req.getParameter("password");
-        logger.debug("username:"+id);
+        logger.debug("id:"+id);
         logger.debug("password:"+password);
-        User user = userService.loginUserService(id, password);
-        logger.debug(user);
-        if(user!=null){
-            logger.debug("登录成功");
+        User adminUser = userService.loginAdminUserService(id, password);
+        if(adminUser!=null){
             HttpSession session = req.getSession();
-            session.setAttribute("user",user);
-            resp.sendRedirect("/JSPShop/index.jsp");
+            session.setAttribute("adminUser",adminUser);
+            session.setAttribute("user",adminUser);
+            resp.sendRedirect("/JSPShop/manage/admin_index.jsp");
         }else{
             logger.debug("登录失败");
-            req.setAttribute("flag",false);
-            req.getRequestDispatcher("/admin_login.jsp").forward(req,resp);
+            req.setAttribute("admin_flag",false);
+            req.getRequestDispatcher("/manage/admin_login.jsp").forward(req,resp);
         }
+
     }
 }
