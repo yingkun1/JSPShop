@@ -76,6 +76,16 @@
     </servlet>
 
 
+    <!-- 分类相关    -->
+    <servlet>
+        <servlet-name>doCategorySelectServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.category.doCategorySelectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doAddCategoryServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.category.doAddCategoryServlet</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>doUserAddServlet</servlet-name>
@@ -129,6 +139,15 @@
         <servlet-name>doUserLogoutServlet</servlet-name>
         <url-pattern>/douserlogout</url-pattern>
     </servlet-mapping>
-
+    
+    <!--  分类相关  -->
+    <servlet-mapping>
+        <servlet-name>doCategorySelectServlet</servlet-name>
+        <url-pattern>/admin_categoryselect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doAddCategoryServlet</servlet-name>
+        <url-pattern>/admin_addcategory</url-pattern>
+    </servlet-mapping>
 
 </web-app>
