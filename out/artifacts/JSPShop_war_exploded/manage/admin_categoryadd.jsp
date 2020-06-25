@@ -13,7 +13,7 @@
 <div class="main-wrap">
 
     <div class="crumb-wrap">
-        <div class="crumb-list"><i class="icon-font"></i><a href="manage/admin_user.jsp">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="admin_douserselect">用户管理</a><span class="crumb-step">&gt;</span><span>新增用户</span></div>
+        <div class="crumb-list"><i class="icon-font"></i><a href="manage/admin_user.jsp">首页</a><span class="crumb-step">&gt;</span><a class="crumb-name" href="admin_categoryselect">分类管理</a><span class="crumb-step">&gt;</span><span>新增分类</span></div>
     </div>
     <div class="result-wrap">
         <div class="result-content">
@@ -24,6 +24,7 @@
                         <th><i class="require-red">*</i>父分类id：</th>
                         <td>
                             <select class="common-text required" id="title" name="parent_id">
+                                <option value="0" selected="selected">根分类</option>
                                 <c:forEach items="${requestScope.categories}" var="category">
                                     <c:if test="${category.CATEGORY_PARENT_ID == 0}">
                                         <option value="${category.CATEGORY_ID}">${category.CATEGORY_NAME}</option>

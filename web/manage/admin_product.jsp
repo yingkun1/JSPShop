@@ -1,6 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: luffyk
+  Date: 2020/6/25
+  Time: 19:58
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: luffyk
   Date: 2020/6/24
   Time: 18:29
   To change this template use File | Settings | File Templates.
@@ -13,7 +21,7 @@
 <div class="main-wrap">
 
     <div class="crumb-wrap">
-        <div class="crumb-list"><i class="icon-font"></i><a href="manage/admin_index.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">分类管理</span></div>
+        <div class="crumb-list"><i class="icon-font"></i><a href="manage/admin_index.jsp">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">图书管理</span></div>
     </div>
     <div class="search-wrap">
         <div class="search-content">
@@ -39,7 +47,7 @@
         <form name="" action="admin_douserdelete" id="myform" method="post">
             <div class="result-title">
                 <div class="result-list">
-                    <a href="admin_addcategory"><i class="icon-font"></i>新增分类</a>
+                    <a href="admin_doproductadd"><i class="icon-font"></i>新增图书</a>
                     <%--                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>--%>
                 </div>
             </div>
@@ -53,18 +61,18 @@
                     <c:forEach items="${requestScope.categories}" var="category">
                         <c:if test="${category.CATEGORY_PARENT_ID == 0}">
                             <tr>
-                                <td>${category.CATEGORY_ID}</td>
-                                <td>${category.CATEGORY_NAME}</td>
-                                <td><a href="admin_tocategoryupdate?category_id=${category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${category.CATEGORY_ID}')">删除</a></td>
-                                <c:forEach items="${requestScope.categories}" var="child_category">
-                                    <c:if test="${child_category.CATEGORY_PARENT_ID == category.CATEGORY_ID}">
-                                        <tr>
-                                            <td>${child_category.CATEGORY_ID}</td>
-                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${child_category.CATEGORY_NAME}</td>
-                                            <td><a href="admin_tocategoryupdate?category_id=${child_category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${child_category.CATEGORY_ID}')">删除</a></td>
-                                        </tr>
-                                    </c:if>
-                                </c:forEach>
+                            <td>${category.CATEGORY_ID}</td>
+                            <td>${category.CATEGORY_NAME}</td>
+                            <td><a href="admin_tocategoryupdate?category_id=${category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${category.CATEGORY_ID}')">删除</a></td>
+                            <c:forEach items="${requestScope.categories}" var="child_category">
+                                <c:if test="${child_category.CATEGORY_PARENT_ID == category.CATEGORY_ID}">
+                                    <tr>
+                                        <td>${child_category.CATEGORY_ID}</td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${child_category.CATEGORY_NAME}</td>
+                                        <td><a href="admin_tocategoryupdate?category_id=${child_category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${child_category.CATEGORY_ID}')">删除</a></td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
                             </tr>
                             <script>
                                 function categoryDelete(message,url) {

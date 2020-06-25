@@ -29,7 +29,7 @@ public class doUserLoginServlet extends HttpServlet {
             logger.debug("登录成功");
             HttpSession session = req.getSession();
             session.setAttribute("user",user);
-            resp.sendRedirect("/JSPShop/index.jsp");
+            resp.sendRedirect("/JSPShop/indexservlet");
         }else{
             logger.debug("登录失败");
             req.setAttribute("flag",false);

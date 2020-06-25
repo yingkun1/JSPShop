@@ -44,8 +44,10 @@ public class doAddCategoryServlet extends HttpServlet {
         Integer index = categoryService.addOneCategoryService(category_name, parent_id);
         if(index>0){
             logger.debug("插入分类成功");
+            resp.sendRedirect("/JSPShop/admin_categoryselect");
         }else{
             logger.debug("插入分类失败");
+            resp.sendRedirect("/JSPShop/manage/admin_categoryadd.jsp");
         }
     }
 }

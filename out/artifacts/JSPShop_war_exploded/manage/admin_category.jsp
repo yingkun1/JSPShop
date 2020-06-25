@@ -40,7 +40,6 @@
             <div class="result-title">
                 <div class="result-list">
                     <a href="admin_addcategory"><i class="icon-font"></i>新增分类</a>
-                    <a id="batchDel" href="javascript:DeleteMore('你确定要批量删除用户吗?','myform')"><i class="icon-font"></i>批量删除</a>
                     <%--                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>--%>
                 </div>
             </div>
@@ -56,17 +55,24 @@
                             <tr>
                                 <td>${category.CATEGORY_ID}</td>
                                 <td>${category.CATEGORY_NAME}</td>
-                                <td><a href="#">修改</a><a href="#">删除</a></td>
+                                <td><a href="admin_tocategoryupdate?category_id=${category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${category.CATEGORY_ID}')">删除</a></td>
                                 <c:forEach items="${requestScope.categories}" var="child_category">
                                     <c:if test="${child_category.CATEGORY_PARENT_ID == category.CATEGORY_ID}">
                                         <tr>
                                             <td>${child_category.CATEGORY_ID}</td>
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${child_category.CATEGORY_NAME}</td>
-                                            <td><a href="#">修改</a><a href="删除"></a></td>
+                                            <td><a href="admin_tocategoryupdate?category_id=${child_category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${child_category.CATEGORY_ID}')">删除</a></td>
                                         </tr>
                                     </c:if>
                                 </c:forEach>
                             </tr>
+                            <script>
+                                function categoryDelete(message,url) {
+                                    if(confirm(message)){
+                                        location.href = url;
+                                    }
+                                }
+                            </script>
 
 
                         </c:if>

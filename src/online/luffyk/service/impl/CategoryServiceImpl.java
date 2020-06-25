@@ -37,4 +37,42 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return index;
     }
+
+    @Override
+    public Category getCategoryInfoByIdService(Integer categoryId) {
+        logger.debug("准备根据categoryId："+categoryId+"获取分类信息");
+        Category category = categoryDao.getCategoryInfoByIdDao(categoryId);
+        if(category!=null){
+            logger.debug("获取分类信息成功");
+        }else{
+            logger.debug("获取分类信息失败");
+        }
+        return category;
+
+    }
+
+    @Override
+    public Integer updateOneCategoryService(Category category) {
+        logger.debug("准备跟新一个分类，分类id为："+category.getCATEGORY_ID());
+        Integer index = categoryDao.updateOneCategoryDao(category);
+        if(index>0){
+            logger.debug("更新分类信息成功");
+        }else{
+            logger.debug("更新分类信息失败");
+        }
+        return index;
+
+    }
+
+    @Override
+    public Integer deleteOneCategoryByIdService(Integer categoryId) {
+        logger.debug("准备删除一个分类，分类id为："+categoryId);
+        Integer index = categoryDao.deleteOneCategoryByIdDao(categoryId);
+        if(index >0){
+            logger.debug("删除成功");
+        }else{
+            logger.debug("删除失败");
+        }
+        return index;
+    }
 }

@@ -85,6 +85,36 @@
         <servlet-name>doAddCategoryServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.category.doAddCategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>toCategoryUpdateServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.category.toCategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doCategoryUpdateServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.category.doCategoryUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doCategoryDeleteServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.category.doCategoryDeleteServlet</servlet-class>
+    </servlet>
+
+    <!--  前端相关  -->
+    <servlet>
+        <servlet-name>indexServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.home.indexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>selectProductListServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.home.selectProductListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doProductSelectServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.home.doProductSelectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doProductAddServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.home.doProductAddServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -149,5 +179,34 @@
         <servlet-name>doAddCategoryServlet</servlet-name>
         <url-pattern>/admin_addcategory</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>toCategoryUpdateServlet</servlet-name>
+        <url-pattern>/admin_tocategoryupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doCategoryUpdateServlet</servlet-name>
+        <url-pattern>/admin_docategoryupdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doCategoryDeleteServlet</servlet-name>
+        <url-pattern>/admin_docategorydelete</url-pattern>
+    </servlet-mapping>
 
+    <!--  前端相关  -->
+    <servlet-mapping>
+        <servlet-name>indexServlet</servlet-name>
+        <url-pattern>/indexservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selectProductListServlet</servlet-name>
+        <url-pattern>/selectproductlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doProductSelectServlet</servlet-name>
+        <url-pattern>/admin_productselect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doProductAddServlet</servlet-name>
+        <url-pattern>/admin_doproductadd</url-pattern>
+    </servlet-mapping>
 </web-app>
