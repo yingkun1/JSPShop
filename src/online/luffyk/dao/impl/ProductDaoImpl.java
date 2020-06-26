@@ -125,4 +125,34 @@ public class ProductDaoImpl implements ProductDao {
             return products;
         }
     }
+
+    @Override
+    public Product getProductByIDDao(Integer product_id) {
+        Product product = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215:3306/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
+            String sql = "select * from lmonkey_product where PRODUCT_ID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,product_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                product = new Product();
+                product.setPRODUCT_ID(resultSet.getInt("PRODUCT_ID"));
+                product.setPRODUCT_NAME(resultSet.getString("PRODUCT_NAME"));
+                product.setPRODUCT_DESCRIPTION(resultSet.getString("PRODUCT_DESCRIPTION"));
+                product.setPRODUCT_PRICE(resultSet.getInt("PRODUCT_PRICE"));
+                product.setPRODUCT_STOCK(resultSet.getInt("PRODUCT_STOCK"));
+                product.setPRODUCT_PID(resultSet.getInt("PRODUCT_PID"));
+                product.setPRODUCT_CID(resultSet.getInt("PRODUCT_CID"));
+                product.setPRODUCT_FILENAME(resultSet.getString("PRODUCT_FILENAME"));
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return product;
+        }
+    }
 }
