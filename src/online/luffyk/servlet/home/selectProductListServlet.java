@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class selectProductListServlet extends HttpServlet {
@@ -32,16 +33,17 @@ public class selectProductListServlet extends HttpServlet {
         logger.debug("category_id:"+categoryId);
         List<Category> categories = categoryService.showAllCategoryService();
         Category category = categoryService.getCategoryInfoByIdService(categoryId);
+        List<Product> products = new ArrayList<>();
         if(category.getCATEGORY_PARENT_ID() == 0){
             logger.debug("根据PID查询");
-            List<Product> products = productService.getSomeProductByPIDService(categoryId);
+            products = productService.getSomeProductByPIDService(categoryId);
             for(Product product:products){
                 logger.debug(product);
             }
         }else{
             //根据CID查询
             logger.debug("根据CID查询");
-            List<Product> products = productService.getSomeProductByCIDService(categoryId);
+            products = productService.getSomeProductByCIDService(categoryId);
             for(Product product:products){
                 logger.debug(product);
             }
@@ -51,6 +53,7 @@ public class selectProductListServlet extends HttpServlet {
         if(categories.size()>0){
             req.setAttribute("category",category);
             req.setAttribute("categories",categories);
+            req.setAttribute("products",products);
             req.getRequestDispatcher("productlist.jsp").forward(req,resp);
         }else{
             req.getRequestDispatcher("indexservlet").forward(req,resp);

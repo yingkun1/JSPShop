@@ -60,4 +60,16 @@ public class ProductServiceImpl implements ProductService {
         }
         return products;
     }
+
+    @Override
+    public Product getProductByIDService(Integer product_id) {
+        logger.debug("准备根据product_id："+product_id+"从数据库中获取数据");
+        Product product = productDao.getProductByIDDao(product_id);
+        if(product!=null){
+            logger.debug("获取到了产品的详细信息");
+        }else{
+            logger.debug("产品的详细信息获取失败");
+        }
+        return product;
+    }
 }

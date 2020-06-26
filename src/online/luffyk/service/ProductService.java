@@ -12,4 +12,6 @@ public interface ProductService {
     List<Product> getSomeProductByPIDService(Integer PID);
 
     List<Product> getSomeProductByCIDService(Integer CID);
+
+    Product getProductByIDService(Integer product_id);
 }

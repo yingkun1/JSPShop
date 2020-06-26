@@ -12,4 +12,6 @@ public interface ProductDao {
     List<Product> getSomeProductByPIDDao(Integer PID);
 
     List<Product> getSomeProductByCIDDao(Integer CID);
+
+    Product getProductByIDDao(Integer product_id);
 }

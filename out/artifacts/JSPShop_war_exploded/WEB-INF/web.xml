@@ -115,6 +115,10 @@
         <servlet-name>doProductAddServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.home.doProductAddServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>selectProductDetailServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.home.selectProductDetailServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -208,5 +212,9 @@
     <servlet-mapping>
         <servlet-name>doProductAddServlet</servlet-name>
         <url-pattern>/admin_doproductadd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selectProductDetailServlet</servlet-name>
+        <url-pattern>/selectproductdetail</url-pattern>
     </servlet-mapping>
 </web-app>
