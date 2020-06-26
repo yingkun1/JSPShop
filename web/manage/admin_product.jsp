@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="online.luffyk.domain.Product" %><%--
   Created by IntelliJ IDEA.
   User: luffyk
   Date: 2020/6/25
@@ -52,39 +53,48 @@
                 </div>
             </div>
             <div class="result-content">
-                <table class="result-tab" width="100%">
+                <table class="result-tab" width="60%">
                     <tr>
                         <th>ID</th>
-                        <th>分类名称</th>
+                        <th>图书名称</th>
                         <th>操作</th>
                     </tr>
-                    <c:forEach items="${requestScope.categories}" var="category">
-                        <c:if test="${category.CATEGORY_PARENT_ID == 0}">
-                            <tr>
-                            <td>${category.CATEGORY_ID}</td>
-                            <td>${category.CATEGORY_NAME}</td>
-                            <td><a href="admin_tocategoryupdate?category_id=${category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${category.CATEGORY_ID}')">删除</a></td>
-                            <c:forEach items="${requestScope.categories}" var="child_category">
-                                <c:if test="${child_category.CATEGORY_PARENT_ID == category.CATEGORY_ID}">
-                                    <tr>
-                                        <td>${child_category.CATEGORY_ID}</td>
-                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${child_category.CATEGORY_NAME}</td>
-                                        <td><a href="admin_tocategoryupdate?category_id=${child_category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${child_category.CATEGORY_ID}')">删除</a></td>
-                                    </tr>
-                                </c:if>
-                            </c:forEach>
-                            </tr>
-                            <script>
-                                function categoryDelete(message,url) {
-                                    if(confirm(message)){
-                                        location.href = url;
-                                    }
-                                }
-                            </script>
-
-
-                        </c:if>
+                    <c:forEach items="${requestScope.products}" var="produce">
+                        <tr>
+                            <td>${produce.PRODUCT_ID}</td>
+                            <td><img src="img/product/${produce.PRODUCT_FILENAME}" style="padding-left: 10px;width: 80px;height: 80px;" alt="">${produce.PRODUCT_NAME}</td>
+                            <td>
+                                <a href="">修改</a>&nbsp;&nbsp;<a href="">删除</a>
+                            </td>
+                        </tr>
                     </c:forEach>
+<%--                    <c:forEach items="${requestScope.categories}" var="category">--%>
+<%--                        <c:if test="${category.CATEGORY_PARENT_ID == 0}">--%>
+<%--                            <tr>--%>
+<%--                            <td>${category.CATEGORY_ID}</td>--%>
+<%--                            <td>${category.CATEGORY_NAME}</td>--%>
+<%--                            <td><a href="admin_tocategoryupdate?category_id=${category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${category.CATEGORY_ID}')">删除</a></td>--%>
+<%--                            <c:forEach items="${requestScope.categories}" var="child_category">--%>
+<%--                                <c:if test="${child_category.CATEGORY_PARENT_ID == category.CATEGORY_ID}">--%>
+<%--                                    <tr>--%>
+<%--                                        <td>${child_category.CATEGORY_ID}</td>--%>
+<%--                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${child_category.CATEGORY_NAME}</td>--%>
+<%--                                        <td><a href="admin_tocategoryupdate?category_id=${child_category.CATEGORY_ID}">修改</a><a href="javascript:categoryDelete('你确定要删除这个分类吗?','admin_docategorydelete?category_id=${child_category.CATEGORY_ID}')">删除</a></td>--%>
+<%--                                    </tr>--%>
+<%--                                </c:if>--%>
+<%--                            </c:forEach>--%>
+<%--                            </tr>--%>
+<%--                            <script>--%>
+<%--                                function categoryDelete(message,url) {--%>
+<%--                                    if(confirm(message)){--%>
+<%--                                        location.href = url;--%>
+<%--                                    }--%>
+<%--                                }--%>
+<%--                            </script>--%>
+
+
+<%--                        </c:if>--%>
+<%--                    </c:forEach>--%>
                     <script>
                         function Delete(message,url) {
                             if(confirm(message)){
