@@ -124,6 +124,18 @@
         <servlet-name>doAddCartServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.cart.doAddCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>showCartServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.cart.showCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doCartShopNumAddServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.cart.doCartShopNumAddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>doDeleteCartShopServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.cart.doDeleteCartShopServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -227,5 +239,17 @@
     <servlet-mapping>
         <servlet-name>doAddCartServlet</servlet-name>
         <url-pattern>/addcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showCartServlet</servlet-name>
+        <url-pattern>/showcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doCartShopNumAddServlet</servlet-name>
+        <url-pattern>/cartshopnumadd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>doDeleteCartShopServlet</servlet-name>
+        <url-pattern>/cartshopdel</url-pattern>
     </servlet-mapping>
 </web-app>
