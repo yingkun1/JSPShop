@@ -18,6 +18,7 @@
     <title>详情页</title>
     <link rel="stylesheet" type="text/css" href="css/public.css"/>
     <link rel="stylesheet" type="text/css" href="css/proList.css"/>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 </head>
 <body><!------------------------------head------------------------------>
 <div class="head">
@@ -49,17 +50,27 @@
                         <p class="fl"><img src="img/product/${requestScope.product.PRODUCT_FILENAME}" alt="20支兔尾巴草" data-src="img/temp/proBig04.jpg">
                         </p></div>
                     <p>数量&nbsp;&nbsp;库存<span>${requestScope.product.PRODUCT_STOCK}</span>件</p>
-                    <div class="num clearfix"><img class="fl sub" src="img/temp/sub.jpg"><span class="fl"
+                    <div class="num clearfix"><img class="fl sub" src="img/temp/sub.jpg"><span id="count" class="fl"
                                                                                                contentEditable="true">1</span><img
                             class="fl add" src="img/temp/add.jpg">
                         <p class="please fl">请选择商品属性!</p></div>
                 </div>
-                <div class="btns clearfix"><a href="#2"><p class="buy fl">立即购买</p></a><a href="#2"><p class="cart fr">
-                    加入购物车</p></a></div>
+                <div class="btns clearfix">
+                    <a href="javascript:showAdd(${requestScope.product.PRODUCT_ID},'buyNow')"><p class="buy fl">立即购买</p></a>
+                    <a href="javascript:showAdd(${requestScope.product.PRODUCT_ID},'addCart')"><p class="cart fr">加入购物车</p></a></div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function showAdd(id,target) {
+        let count = $("#count").text();
+        console.log("count:"+count);
+        let url = "addcart?product_id="+id+"&count="+count+"&target="+target;
+        console.log("url:"+url);
+        location.href = url ;
+    }
+</script>
 <div class="introMsg wrapper clearfix">
     <div class="msgL fl">
         <div class="msgTit clearfix"><a class="on">商品详情</a><a>所有评价</a></div>
