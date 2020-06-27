@@ -26,4 +26,6 @@ public interface CartDao {
     Integer updateCartShopNumDao(Integer cartId,Integer number);
 
     Integer deleteCartShopByIdDao(Integer cartId);
+
+    List<Cart> getOneCartByIdDao(int[] cartIds);
 }

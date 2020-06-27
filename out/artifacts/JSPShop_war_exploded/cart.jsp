@@ -20,6 +20,8 @@
     <title>cart</title>
     <link rel="stylesheet" type="text/css" href="css/public.css"/>
     <link rel="stylesheet" type="text/css" href="css/proList.css"/>
+    <script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
 <body><!--------------------------------------cart--------------------->
 <div class="head ding">
@@ -62,9 +64,25 @@
         <div class="tr clearfix"><label class="fl"><input class="checkAll" type="checkbox"/><span></span></label>
             <p class="fl"><a href="#">全选</a><a href="#" class="del">删除</a></p>
             <p class="fr"><span>共<small id="sl">0</small>件商品</span><span>合计:&nbsp;<small id="all">￥0.00</small></span><a
-                    href="order.html" class="count">结算</a></p></div>
+                    href="javascript:order()" class="count">结算</a></p></div>
     </div>
 </div>
+
+<script>
+   function order() {
+       console.log("11111111111");
+       let str = "";
+       $("input[name='ck']:checked").each(function (index,item) {
+            var val = $(this).val();
+            str = str+val+"-";
+       });
+       str = str.substring(0,str.length-1);
+       console.log(str);
+       let url = "orderconfirm?cart_ids="+str;
+       location.href = url;
+   }
+</script>
+
 <div class="mask"></div>
 <div class="tipDel"><p>确定要删除该商品吗？</p>
     <p class="clearfix"><a class="fl cer" href="#">确定</a><a class="fr cancel" href="#">取消</a></p></div><!--返回顶部-->
@@ -130,7 +148,6 @@
     </div>
 </div>
 <div class="pleaseC"><p>请选择宝贝</p><img class="off" src="img/temp/off.jpg"/></div>
-<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/public.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/pro.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/cart.js" type="text/javascript" charset="utf-8"></script>

@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("all")
 public class CartDaoImpl implements CartDao {
     @Override
     public Integer addOneCartDao(Cart cart) {
@@ -168,6 +169,40 @@ public class CartDaoImpl implements CartDao {
             e.printStackTrace();
         }finally {
             return index;
+        }
+    }
+
+    @Override
+    public List<Cart> getOneCartByIdDao(int[] cartIds) {
+        ArrayList<Cart> carts = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://101.132.138.215:3306/jspShop?characterEncoding=utf-8&useSSL=false", "root", "yingkun9257");
+            for(int value:cartIds){
+                String sql = "select * from lmonkey_cart where CART_ID=?";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setInt(1,value);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    Cart cart = new Cart();
+                    cart.setCART_ID(resultSet.getInt("CART_ID"));
+                    cart.setCART_P_FILENAME(resultSet.getString("CART_P_FILENAME"));
+                    cart.setCART_P_NAME(resultSet.getString("CART_P_NAME"));
+                    cart.setCART_P_PRICE(resultSet.getInt("CART_P_PRICE"));
+                    cart.setCART_P_NUMBER(resultSet.getInt("CART_P_NUMBER"));
+                    cart.setCART_P_STOCK(resultSet.getInt("CART_P_STOCK"));
+                    cart.setCART_P_ID(resultSet.getInt("CART_P_ID"));
+                    cart.setCART_U_ID(resultSet.getString("CART_U_ID"));
+                    cart.setCART_VALID(resultSet.getInt("CART_VALID"));
+                    carts.add(cart);
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            return carts;
         }
     }
 }

@@ -136,6 +136,10 @@
         <servlet-name>doDeleteCartShopServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.cart.doDeleteCartShopServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.cart.OrderConfirmServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -251,5 +255,9 @@
     <servlet-mapping>
         <servlet-name>doDeleteCartShopServlet</servlet-name>
         <url-pattern>/cartshopdel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderConfirmServlet</servlet-name>
+        <url-pattern>/orderconfirm</url-pattern>
     </servlet-mapping>
 </web-app>
