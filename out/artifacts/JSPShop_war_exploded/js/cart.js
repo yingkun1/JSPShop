@@ -6,6 +6,16 @@ $(function () {
         } else {
             c--;
             $(this).siblings("span").text(c);
+            if($(this).siblings("span").attr("data-src")){
+                let attr = $(this).siblings("span").attr("data-src");
+                console.log(attr);
+                let url = "cartshopnumadd?count="+c+"&cart_id="+attr;
+                console.log(url);
+                $.get(url,function () {
+
+                });
+            }
+
             var d = $(this).parents(".number").prev().text().substring(1);
             $(this).parents(".th").find(".sAll").text("￥" + (c * d).toFixed(2));
             a();
@@ -19,6 +29,17 @@ $(function () {
         } else {
             c++;
             $(this).siblings("span").text(c);
+            if($(this).siblings("span").attr("data-src")){
+                let attr = $(this).siblings("span").attr("data-src");
+                console.log(attr);
+                let url = "cartshopnumadd?count="+c+"&cart_id="+attr;
+                console.log(url);
+                $.get(url,function () {
+
+                });
+            }
+
+
             var d = $(this).parents(".number").prev().text().substring(1);
             $(this).parents(".th").find(".sAll").text("￥" + (c * d).toFixed(2));
             a();
@@ -111,6 +132,13 @@ $(function () {
         if ($(this).parent().parent().hasClass("th")) {
             $(".mask").show();
             $(".tipDel").show();
+            let attr = $(this).attr("data-src");
+            let url = "cartshopdel?cart_id="+attr;
+            console.log("url:"+url);
+            $.get(url,function () {
+
+            });
+
             index = $(this).parents(".th").index() - 1;
             $(".cer").click(function () {
                 $(".mask").hide();
