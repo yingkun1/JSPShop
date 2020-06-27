@@ -87,5 +87,17 @@ public class CartServiceImpl implements CartService {
         return index;
     }
 
+    @Override
+    public List<Cart> getOneCartByIdService(int[] cartIds) {
+        logger.debug("准备根据cartId从数据库中获取购物车的信息");
+        List<Cart> carts = cartDao.getOneCartByIdDao(cartIds);
+        if(carts.size()>0){
+            logger.debug("获取到了数据库中购物车的信息");
+        }else{
+            logger.debug("没有获取到数据中购物车的信息");
+        }
+        return carts;
+    }
+
 
 }

@@ -27,4 +27,6 @@ public interface CartService {
 
     Integer deleteCartShopByIdService(Integer cartId);
 
+    List<Cart> getOneCartByIdService(int[] cartIds);
+
 }
