@@ -119,6 +119,11 @@
         <servlet-name>selectProductDetailServlet</servlet-name>
         <servlet-class>online.luffyk.servlet.home.selectProductDetailServlet</servlet-class>
     </servlet>
+    <!--  购物车相关  -->
+    <servlet>
+        <servlet-name>doAddCartServlet</servlet-name>
+        <servlet-class>online.luffyk.servlet.cart.doAddCartServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -216,5 +221,11 @@
     <servlet-mapping>
         <servlet-name>selectProductDetailServlet</servlet-name>
         <url-pattern>/selectproductdetail</url-pattern>
+    </servlet-mapping>
+
+    <!--  购物车相关  -->
+    <servlet-mapping>
+        <servlet-name>doAddCartServlet</servlet-name>
+        <url-pattern>/addcart</url-pattern>
     </servlet-mapping>
 </web-app>
