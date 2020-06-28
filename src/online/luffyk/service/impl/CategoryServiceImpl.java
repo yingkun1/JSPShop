@@ -27,6 +27,18 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> showAllCategoryService(int count, int currentPage,String keywords) {
+        logger.debug("准备进行分页查询");
+        List<Category> categories = categoryDao.showAllCategoryDao(count, currentPage,keywords);
+        if(categories.size()>0){
+            logger.debug("根据分页获取到了分类信息");
+        }else{
+            logger.debug("根据分页的方式没有获取到分类的信息");
+        }
+        return categories;
+    }
+
+    @Override
     public Integer addOneCategoryService(String categoryName,Integer categoryId) {
         logger.debug("准备添加一个分类");
         Integer index = categoryDao.addOneCategoryDao(categoryName, categoryId);
@@ -74,5 +86,17 @@ public class CategoryServiceImpl implements CategoryService {
             logger.debug("删除失败");
         }
         return index;
+    }
+
+    @Override
+    public int[] totalNumsAndPagesService(int count,String keywords) {
+        logger.debug("准备根据count值获取总记录数和总页数");
+        int[] totalNumsAndPages = categoryDao.totalNumsAndPagesDao(count,keywords);
+        if(totalNumsAndPages[0]>0 && totalNumsAndPages[1]>0){
+            logger.debug("获取到了总条数和总页数");
+        }else{
+            logger.debug("没有获取到总条数和总页数");
+        }
+        return totalNumsAndPages;
     }
 }
